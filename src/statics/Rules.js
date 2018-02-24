@@ -1,10 +1,10 @@
-import React from "react";
-import {Rules} from "../components/Rules";
-import {RulesTask} from "../components/RulesTask";
+import React from 'react';
+import { Rules } from '../components/Rules';
+import { RulesTask } from '../components/RulesTask';
 
-import "./Rules.less";
+import './Rules.less';
 
-export default (props) =>
+export default props =>
   (<div className="main-panel rules-section">
     <div className="container text-center my-5">
       <h1>General Rules</h1>
@@ -34,7 +34,6 @@ export default (props) =>
         <ul>
           <li>Templates are editable, as long as your contribution has a clear format. </li>
           <li>Templates can be extended.</li>
-          <li>Templates can be translated in a different language than english as long as the category allows that. Check the specific rules for each category.</li>
         </ul>
       </div>
 
@@ -115,10 +114,7 @@ export default (props) =>
 
       <div>
         <h2>Contributions must be in English</h2>
-        Contents of the contributions (post content) must be in plain English and fully understandable. The only accepted exceptions are:
-        <ul>
-          <li>Contributions under the Tutorials, Video Tutorials Category and Blog posts.</li>
-        </ul>
+        <p>Contents of the contributions (post content) must be in plain English and fully understandable.</p>
       </div>
 
       <div>
@@ -190,7 +186,10 @@ export default (props) =>
             The linked Github repository must always contain code, a README and a license. <b>[SOFT]</b>
           </li>
           <li>
-            Contributions for un-official repositories will only be accepted if present in <a href="https://docs.google.com/spreadsheets/d/1RMQyfqKRmgeIWPM80h31hS1NdLxqLJ6qy3I5ucNGuuc/edit?usp=sharing">Utopian un-official repos whitelist</a>
+            Contributions will only be accepted for repositories not present in the <a href="https://docs.google.com/spreadsheets/d/1q49j3mjjJVwqxRUdX0sqEApV7mAVil-K-OS-lKlFP_Y/">Utopian repository blacklist</a>.
+          </li>
+          <li>
+            Contributions for un-official repositories will only be accepted if present in the <a href="https://docs.google.com/spreadsheets/d/1RMQyfqKRmgeIWPM80h31hS1NdLxqLJ6qy3I5ucNGuuc/edit?usp=sharing">Utopian un-official repository whitelist</a>.
           </li>
           <li>
             Contributions on <b>official</b> repositories that are mirrors of another subversioning system are always accepted.
@@ -207,7 +206,7 @@ export default (props) =>
       <div>
         <h1>Categories Rules</h1>
         <div><Rules inEditor={false} type="ideas" /></div>
-        {/*<div><Rules inEditor={false} type="sub-projects" /></div>*/}
+        {/* <div><Rules inEditor={false} type="sub-projects" /></div>*/}
         <div><Rules inEditor={false} type="development" /></div>
         <div><Rules inEditor={false} type="bug-hunting" /></div>
         <div><Rules inEditor={false} type="translations" /></div>
@@ -244,7 +243,7 @@ export default (props) =>
 
       <div>
         <h1>Report a Moderation Issue</h1>
-        <p>Get in touch with the Supervisor assigned to the moderator that reviewed your contribution. <a target="_blank" href="https://docs.google.com/spreadsheets/u/1/d/11AqLQPgULU4F7fIwfArqYdAcexufSH3IBEY32yVVm4I/edit?usp=drive_web">Find them on this document.</a></p>
+        <p>If you disagree with a moderator\'s decision or experience other moderation related issues, you can get in touch with us on Discord. You can mention <b>@Moderators</b> or <b>@Supervisors</b> in the <a href="https://discord.gg/KXpest">#review-discussion</a> channel. Mention Supervisors only in urgent situations.<br /><br /><b>Supervisors and Moderators are not required to and most likely will not respond to direct messages</b>.</p>
       </div>
 
       <div>
@@ -257,11 +256,12 @@ export default (props) =>
         <div>
           <h2>Application as an Utopian Moderator</h2>
           <ul>
+            <li>You must be at least 18 years old.</li>
             <li>
-              You must write a public Steemit post proposing his intentions, one category or more related categories he would like to moderate, his field of expertise and should nominate one existing Supervisor.
+              You must write a public Steemit post proposing your intentions, one or more related categories you would like to moderate, your fields of expertise and you should nominate one existing Supervisor. In order to nominate a Supervisor pick one from the <a target="_blank" href="https://docs.google.com/spreadsheets/u/1/d/11AqLQPgULU4F7fIwfArqYdAcexufSH3IBEY32yVVm4I/edit?usp=drive_web">official list</a>.
             </li>
             <li>
-              The public Steemit post must be pasted in the channel <a href="https://discord.gg/Ddj8SJf" target="_blank">#mod-applicant on Discord</a>. In order to nominate a Supervisor pick one from the <a target="_blank" href="https://docs.google.com/spreadsheets/u/1/d/11AqLQPgULU4F7fIwfArqYdAcexufSH3IBEY32yVVm4I/edit?usp=drive_web">official list</a>.
+                You must <a href="https://docs.google.com/forms/d/1YAkcRyjBRCIrdLOizgO7E8mATAU6_ZSPjL2WCZrPn_4">complete our application form and pass the integrated test</a>.
             </li>
           </ul>
           <div>

@@ -87,6 +87,7 @@ class Editor extends React.Component {
     quote: 'ctrl+q',
     link: 'ctrl+k',
     image: 'ctrl+m',
+    code: 'ctrl+n',
   };
 
   state = {
@@ -131,7 +132,7 @@ class Editor extends React.Component {
       }
     }
 
-    const removeChat = () => {
+   /* const removeChat = () => {
         if (document.getElementsByClassName("cometchat_ccmobiletab_redirect") && document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0]) {
           if (document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0].classList) {
             if (!document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0].classList.contains("Component__block")) {
@@ -144,13 +145,14 @@ class Editor extends React.Component {
     removeChat();
     setTimeout(removeChat, 2000);
     setTimeout(removeChat, 2500);
-    setTimeout(removeChat, 4000);
+    setTimeout(removeChat, 4000); */
   }
 
 
-  
+
 
   componentWillUnmount() {
+    /*
     if (document.getElementsByClassName("cometchat_ccmobiletab_redirect") && document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0]) {
       if (document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0].classList) {
         if (document.getElementsByClassName("cometchat_ccmobiletab_redirect")[0].classList.contains("Component__block")) {
@@ -158,7 +160,7 @@ class Editor extends React.Component {
           console.log("Unblocking Chat");
         }
       }
-    }
+    }*/
   }
 
   componentWillReceiveProps(nextProps) {
@@ -511,6 +513,9 @@ class Editor extends React.Component {
       case 'image':
         this.insertAtCursor('![', '](url)', 2, 2);
         break;
+      case 'code':
+        this.insertAtCursor('``` language\n', '\n```', 4, 12);
+        break;
       default:
         break;
     }
@@ -535,19 +540,23 @@ class Editor extends React.Component {
       this.insertCode('link');
     },
     image: () => this.insertCode('image'),
+    code: () => this.insertCode('code'),
   };
 
   renderMarkdown = (value) => {
     this.setState({
-      contentHtml: remarkable.render(value),
+      contentHtml: value,
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { intl, loading, isUpdating, isReviewed, type, saving, getGithubRepos, repos, setGithubRepos, user, getPullRequests, pullRequests, parsedPostData } = this.props;
-
     const chosenType = this.state.currentType || type || 'ideas';
+    const hasGithubSynced = () => {
+      if (!user || !user.github || !user.github.lastSynced) return false;
+      return (user.github.lastSynced) != null;
+    };
 
     return (
       <Form className="Editor" layout="vertical" onSubmit={this.handleSubmit}>
@@ -643,6 +652,7 @@ class Editor extends React.Component {
 
         {!this.state.rulesAccepted && !isUpdating  ? <Rules
             inEditor={true}
+            githubSynced={hasGithubSynced()}
             type={chosenType}
             acceptRules={() => this.setState({rulesAccepted: true})} />
           : null}
@@ -758,7 +768,7 @@ class Editor extends React.Component {
           </Form.Item>
 
 
-          {(chosenType === 'development' || chosenType === 'documentation' || chosenType === 'copywriting') &&
+          {(chosenType === 'development' || chosenType === 'documentation' || chosenType === 'copywriting' || chosenType === 'translations') &&
           user.github &&
           (this.state.availablePullRequests.length > 0 || pullRequests.length > 0) ?
             <Form.Item
